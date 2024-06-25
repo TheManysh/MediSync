@@ -4,11 +4,6 @@ import { useState, useRef, useCallback } from 'react';
 import Checkbox from 'expo-checkbox';
 import MedicineIcon from '@/assets/Icons/MedicineIcon';
 import List from '@/components/List';
-import {
-	BottomSheetBackdrop,
-	BottomSheetModal,
-	useBottomSheetModal,
-} from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -59,17 +54,6 @@ const medicineList = [
 
 export default function HomePage() {
 	const [checked, setChecked] = useState(true);
-
-	const bottomSheetRef = useRef<BottomSheetModal>(null);
-	const { dismiss } = useBottomSheetModal();
-
-	const openBottomModal = () => {
-		bottomSheetRef.current?.present();
-	};
-
-	const closeBottomModal = useCallback(() => {
-		dismiss();
-	}, [dismiss]);
 
 	return (
 		<GestureHandlerRootView
@@ -155,18 +139,6 @@ export default function HomePage() {
 						renderItem={({ item }) => <List data={item} key={item.name} />}
 					/>
 				</View>
-				<BottomSheetModal
-					ref={bottomSheetRef}
-					index={0}
-					backdropComponent={BottomSheetBackdrop}
-					snapPoints={['50%', '75%']}
-					enableDismissOnClose={true}
-					enablePanDownToClose={true}
-				>
-					<View className='bg-white'>
-						<Text>Bottom Sheet</Text>
-					</View>
-				</BottomSheetModal>
 			</ScrollView>
 		</GestureHandlerRootView>
 	);

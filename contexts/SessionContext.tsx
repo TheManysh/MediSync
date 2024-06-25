@@ -1,6 +1,6 @@
 // contexts/SecureSessionContext.js
 import React, { createContext } from 'react';
-import useSecureSession from '@/hooks/useSession';
+import useSession from '@/hooks/useSession';
 
 const SessionContext = createContext({});
 
@@ -9,8 +9,7 @@ export const SessionProvider = ({
 }: {
 	children: React.ReactNode;
 }) => {
-	const session = useSecureSession();
-
+	const session = useSession();
 	return (
 		<SessionContext.Provider value={session}>
 			{children}

@@ -2,6 +2,7 @@ import { NativeWindStyleSheet } from 'nativewind';
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { Fontisto } from '@expo/vector-icons';
 
 NativeWindStyleSheet.setOutput({
 	default: 'native',
@@ -12,7 +13,7 @@ export default function HomeLayout() {
 		<BottomSheetModalProvider>
 			<Tabs>
 				<Tabs.Screen
-					name='index'
+					name='home/index'
 					options={{
 						title: 'Home',
 						tabBarIcon: ({ color }) => (
@@ -22,20 +23,30 @@ export default function HomeLayout() {
 					}}
 				/>
 				<Tabs.Screen
-					name='reminders/index'
+					name='medicines/index'
 					options={{
-						title: 'Reminders',
+						title: 'Medicines',
 						tabBarIcon: ({ color }) => (
-							<Ionicons name='alarm-outline' size={16} color={color} />
+							<Fontisto name='pills' size={16} color={color} />
 						),
 					}}
 				/>
 				<Tabs.Screen
-					name='report/index'
+					name='reminders/index'
 					options={{
-						title: 'Report',
+						title: 'Reminders',
+						headerTitle: 'Upcoming Reminders',
 						tabBarIcon: ({ color }) => (
-							<Ionicons name='analytics-outline' size={16} color={color} />
+							<Ionicons name='alarm-outline' size={20} color={color} />
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name='notifications/index'
+					options={{
+						title: 'Notifications',
+						tabBarIcon: ({ color }) => (
+							<Ionicons name='notifications-outline' size={16} color={color} />
 						),
 					}}
 				/>
@@ -46,6 +57,16 @@ export default function HomeLayout() {
 						tabBarIcon: ({ color }) => (
 							<Ionicons name='settings-outline' size={16} color={color} />
 						),
+					}}
+				/>
+				<Tabs.Screen
+					name='signup/index'
+					options={{
+						title: 'Signup',
+						tabBarIcon: ({ color }) => (
+							<Ionicons name='settings-outline' size={16} color={color} />
+						),
+						href: null,
 					}}
 				/>
 			</Tabs>

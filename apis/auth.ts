@@ -6,7 +6,13 @@ const login = ({
 }: {
 	identity: string;
 	password: string;
-}) => axios.post('/auth/signin', { identity, password });
+}) =>
+	axios
+		.post('/auth/signin', { identity, password })
+		.then((res) => res.data.data)
+		.catch((err) => {
+			console.log(err.response.data);
+		});
 const signup = ({
 	firstname,
 	lastname,
@@ -18,11 +24,16 @@ const signup = ({
 	email: string;
 	password: string;
 }) =>
-	axios.post('/auth/signup', {
-		firstname,
-		lastname,
-		email,
-		password,
-	});
+	axios
+		.post('/auth/signup', {
+			firstname,
+			lastname,
+			email,
+			password,
+		})
+		.then((res) => res.data)
+		.catch((err) => {
+			console.log(err);
+		});
 
 export { login, signup };

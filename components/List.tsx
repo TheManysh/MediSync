@@ -17,31 +17,33 @@ const List = ({ data }: any) => {
 			}}
 		>
 			<View className='flex flex-row items-center'>
-				<View className='relative p-1  h-10 w-[15%]'>
-					<View className='absolute w-[72] h-[72] -top-3 -left-1'>
-						{/* <PillBlob /> */}
-					</View>
+				<View className='relative p-1 h-10 w-[15%]'>
 					<View className='w-full h-full'>
-						{data.type === 'pill' ? (
-							<RoundedPillIcon />
-						) : data.type == 'tablet' ? (
-							<TabletIcon />
+						{data.type === 'sedentary' ? (
+							<SedentaryIcon />
 						) : data.type == 'water' ? (
 							<WaterIcon />
+						) : Math.random() > 0.5 ? (
+							<TabletIcon />
 						) : (
-							<SedentaryIcon />
+							<RoundedPillIcon />
 						)}
 					</View>
 				</View>
 				<View className='w-[85%] pr-2'>
 					<View className='flex flex-row items-center justify-between'>
-						<Text className='text-lg font-semibolds'>{data.name}</Text>
+						<Text className='text-lg font-semibolds'>
+							{data.name || data.medicine.name}
+						</Text>
 						<Text>{data.time}</Text>
 					</View>
-
-					<View>
-						<Text className='text-sm text-gray-500'>Stock: {data.stock}</Text>
-					</View>
+					{data.quantity && (
+						<View>
+							<Text className='text-sm text-gray-500'>
+								Stock: {data.quantity}
+							</Text>
+						</View>
+					)}
 				</View>
 			</View>
 		</View>
